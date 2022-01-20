@@ -1,0 +1,24 @@
+package org.genration.blogpessoal.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.Repository;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("postagem")
+@CrossOrigin("*")
+public class controller {
+	@Autowired
+	private ResponseRepository repository;
+	
+	@DeleteMapping
+	private ResponseEntity<List<postagem>>GetAll(){
+	return ResponseEntity.ok(Repository.findall());
+
+}
+}

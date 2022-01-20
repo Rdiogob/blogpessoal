@@ -1,0 +1,9 @@
+package org.genration.blogpessoal.repository;
+
+import org.genration.blogpessoal.model.postagens;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+@Repository
+public interface postagem extends JpaRepository<postagens,Long>{
+ public List<Postagem> findAllbyTituloConstainigIgnoreCase(String titulo);
+}
