@@ -1,0 +1,37 @@
+package controller;
+
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.blogpessoal1.meublog.model.usuario;
+import com.blogpessoal1.meublog.services.usuarioservice;
+
+@RequestMapping
+@RestController
+@CrossOrigin( origins = "*" , allowedHeaders= "*")
+public class usercontroller {
+	
+	@Autowired
+	private usuarioservice userservice;
+	
+	@PostMapping("/logar")
+	public <userlogin> ResponseEntity<userlogin> authentic(@RequestBody Optional<userlogin> user){
+    return usuarioservice.logar(user).map(resp-> ResponseEntity.ok(resp))
+    		.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+	}
+	
+@PostMapping("/cadastra")
+public ResponseEntity<usuario> post(RequestBody Usuario){
+	return ResponseEntity.status(HttpStatus.CREATED)
+			.Body(usuarioservice.cadastrausuario(usuario))
+}
+}
